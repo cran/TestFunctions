@@ -1,0 +1,12 @@
+3301af712bf83971fe04a2d35a0790f9 *DESCRIPTION
+2c14f7bc5b3938e4c0a52d579c88b6e5 *NAMESPACE
+1ef5fc63b302e2025c5a3f1707ed024d *R/RFF.R
+5a42f58d45ea7058acfbbbc54bcf4131 *R/functions1.R
+b0ea50cf8222bc5cc4cd94aaa937dc4d *R/test_func_apply.R
+b4143caa2e63764ad153f17b79793ad0 *README.md
+be0be3de7b37b555017bf263a97153cb *man/RFF.Rd
+93171a82d7d5196389a3014f23e8badf *man/RFF_get.Rd
+69c5e1b860d4339c9e2df8f908ef33f6 *man/TF_OTL_Circuit.Rd
+612b18080a0d4883f11870c380b14941 *man/nsin.Rd
+0fe192df80e72f17ad6f6d8a5d89cd93 *man/standard_test_func.Rd
+36d7ee4d3708d72d979c40b5a7294a52 *man/test_func_apply.Rd
