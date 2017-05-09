@@ -26,12 +26,18 @@ branin(matrix(runif(20), ncol=2))
 ```
 
 ``` r
-cf::cf(banana)
+ContourFunctions::cf(banana)
 ```
 
-![](README-unnamed-chunk-3-1.png)
+![](tools/README-bananacont-1.png)
 
 How do I get it?
 ----------------
 
 Install it like any other package with `install.packages`.
+
+    install.packages("TestFunctions")
+
+    # Or the the development version from GitHub:
+    # install.packages("devtools")
+    devtools::install_github("CollinErickson/TestFunctions")

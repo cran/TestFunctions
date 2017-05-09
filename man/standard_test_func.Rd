@@ -38,4 +38,3 @@ create functions in the package, so it is not currently used.
 gaussian1 <- standard_test_func(.gaussian1, scale_it=FALSE, scale_low = c(0,0), scale_high = c(1,1))
 curve(gaussian1(matrix(x,ncol=1)))
 }
-

@@ -2,7 +2,7 @@ Package: TestFunctions
 Type: Package
 Title: Test Functions for Simulation Experiments and Evaluating
         Optimization and Emulation Algorithms
-Version: 0.1.0
+Version: 0.2.0
 Author: Collin Erickson
 Maintainer: Collin Erickson <collinberickson@gmail.com>
 Description: Test functions are often used to test computer code.
@@ -13,8 +13,10 @@ Description: Test functions are often used to test computer code.
   their R code is not used.
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown, numDeriv, ContourFunctions
+VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2016-09-26 15:46:10 UTC; cbe117
+Packaged: 2017-05-09 12:40:28 UTC; cbe117
 Repository: CRAN
-Date/Publication: 2016-09-27 00:42:33
+Date/Publication: 2017-05-09 21:25:06 UTC

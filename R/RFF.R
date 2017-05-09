@@ -58,6 +58,7 @@ RFF <- function(x,freq,mag,dirr,offset, wave=sin, noise=0) {
 #' @param M Number of random waves
 #' @param wave Type of wave
 #' @param noise Standard deviation of random normal noise to add
+#' @param seed Seed to set before randomly selecting function
 #'
 #' @return A random wave function
 #' @export
@@ -69,7 +70,8 @@ RFF <- function(x,freq,mag,dirr,offset, wave=sin, noise=0) {
 #' f <- RFF_get(D=1, noise=.1)
 #' curve(f(matrix(x,ncol=1)))
 #' for(i in 1:100) curve(f(matrix(x,ncol=1)), add=TRUE, col=sample(2:8,1))
-RFF_get <- function(D=2, M=30, wave=sin, noise=0) {
+RFF_get <- function(D=2, M=30, wave=sin, noise=0, seed=NULL) {
+  if (!is.null(seed)) {set.seed(seed)}
   freq <- sort((rexp(M,1/7))) + 0.5 # can use ceiling to get ints, then don't add anything
   mag <- matrix(sapply(1:M,function(i){runif(1,-1/freq[i],1/freq[i])}), ncol=1)
   dirr <- matrix(runif(D*M,-1,1),ncol=D)

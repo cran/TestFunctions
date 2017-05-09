@@ -1,0 +1,99 @@
+---
+title: "An Introduction to TestFunctions"
+author: "Collin Erickson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An Introduction to TestFunctions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is an introduction to the R package TestFunctions. It is available on [CRAN](https://cran.r-project.org/package=TestFunctions) and is maintained through [Github](https://github.com/CollinErickson/TestFunctions).
+
+Test functions are used whenever one needs to evaluate an algorithm. For example, an optimization algorithm should be tested on many different functions to make sure that it works and is robust. Thus many optimization test functions are very tricky, such as those with many local minima meant to make the global minimum harder to find.
+
+
+## How do I use this package?
+
+Each of the test functions is called like any other function. The first argument, `x`, should
+be a vector representing one point or a matrix that has points in its rows. This can cause 
+problems if you are using a 1-dimensional function and pass in a vector of values. 
+Instead you should pass them in as a matrix with a single column, or vectorize the function.
+
+The code below shows how the `branin` function can be used, taking in either a vector or a matrix.
+
+```{r}
+set.seed(0)
+library(TestFunctions)
+branin(runif(2))
+branin(matrix(runif(20), ncol=2))
+```
+
+
+A contour of the banana function is shown below.
+
+```{r}
+ContourFunctions::cf(banana)
+```
+
+## General function information
+
+The functions are all designed to be run by default in the $[0,1]^D$ unit cube. 
+If you want to run the function on the original input values, you can set `scale_it=FALSE`.
+
+Independent Gaussian noise can be added to most functions by passing the standard deviation of the noise as the `noise` parameter. The plots below show the original function, then what data from the function with noise looks like.
+
+```{r, fig.show='hold'}
+tf1 <- function(xx) powsin(x=matrix(xx,ncol=1),  noise=0)
+curve(tf1, main="Function without noise")
+
+
+x1 <- runif(1e2)
+y1 <- powsin(x=matrix(x1,ncol=1),  noise=.1)
+plot(x1,y1, col=2, pch=19, cex=.3, main="Data with noise")
+curve(tf1,add=T)
+```
+
+
+
+## Random wave functions
+
+The function `RFF_get` will return a random wave function with any given number of dimensions. The function is created by combining many different one dimensional waves passing through the input area with various directions, magnitude, and offset. The default is composed of sine waves, but this can be changed to block or v waves.
+
+Below is an example of a one dimensional wave.
+
+```{r}
+tf <- RFF_get(D=1)
+curve(tf)
+```
+
+Below is an example of a random wave in two dimensions.
+
+```{r}
+ContourFunctions::cf(RFF_get(D=2))
+```
+
+
+## Function enhancers
+
+There are some functions that modify other functions.
+
+* `add_linear_terms` adds linear terms to a function.
+
+* `add_noise` adds random noise to a function.
+
+* `add_null_dims` adds extra dimensions that do not affect the function output.
+
+* `add_zoom`  lets you zoom in on part of a function. Below are two examples of zooming in on the banana function.
+
+
+```{r}
+ContourFunctions::cf(banana)
+ContourFunctions::cf(add_zoom(banana, c(0,.5), c(1,1)))
+ContourFunctions::cf(add_zoom(banana, c(.2,.5), c(.8,1)))
+```
+
+## Additional information
+
+Many of the functions, along with code implementing the function, can be found at <https://www.sfu.ca/~ssurjano/>. The code was not taken from this site, but some of my implementations were checked against theirs for consistency.

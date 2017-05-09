@@ -27,7 +27,7 @@ test_func_apply <- function(func, x, scale_it, scale_low, scale_high, noise=0, .
     noise.out <- rnorm(nrow(x), 0, noise)
     #apply(x, 1, test_func_apply, func=func, scale_it=scale_it, scale_low=scale_low, scale_high=scale_high, ...)
     if (scale_it) {
-      return(apply(x, 1, function(y){func(y * (scale_high - scale_low) + scale_low)}, ...) + noise.out)
+      return(apply(x, 1, function(y, ...){func(y * (scale_high - scale_low) + scale_low, ...)}, ...) + noise.out)
     } else {
       return((apply(x, 1, func, ...)) + noise.out)
     }

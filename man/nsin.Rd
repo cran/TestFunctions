@@ -26,4 +26,3 @@ curve(nsin(12*pi*x), n = 1000)
 curve(vsin(2*pi*x), n = 1000)
 curve(vsin(12*pi*x), n = 1000)
 }
-
