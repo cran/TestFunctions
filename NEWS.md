@@ -1,7 +1,15 @@
+# TestFunctions 0.2.1
+
+Various changes made over the years.
+
+Error in the borehole function fixed.
+
 # TestFunctions 0.2.0
 
 Add many new test functions.
 Added some function modifiers, such as add_zoom.
+
+Accepted to CRAN on 5/9/17.
 
 
 # TestFunctions 0.1.0

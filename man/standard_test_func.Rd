@@ -4,8 +4,14 @@
 \alias{standard_test_func}
 \title{Create a standard test function.}
 \usage{
-standard_test_func(func, scale_it_ = F, scale_low_ = NULL,
-  scale_high_ = NULL, noise_ = 0, ...)
+standard_test_func(
+  func,
+  scale_it_ = F,
+  scale_low_ = NULL,
+  scale_high_ = NULL,
+  noise_ = 0,
+  ...
+)
 }
 \arguments{
 \item{func}{A function that takes a vector representing a single point.}

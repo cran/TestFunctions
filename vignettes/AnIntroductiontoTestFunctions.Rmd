@@ -97,3 +97,11 @@ ContourFunctions::cf(add_zoom(banana, c(.2,.5), c(.8,1)))
 ## Additional information
 
 Many of the functions, along with code implementing the function, can be found at <https://www.sfu.ca/~ssurjano/>. The code was not taken from this site, but some of my implementations were checked against theirs for consistency.
+
+The R package [`smoof`](https://cran.r-project.org/package=smoof) also provides many optimization test functions.
+
+Mike McCourt's GitHub repository [evalset](https://github.com/sigopt/evalset) provides many test functions for Python.
+
+[HPOlib](https://www.automl.org/legacy/benchmarks.html) provides some benchmark functions for Python.
+
+[Hansen et al (2009)](https://inria.hal.science/inria-00362633v2/document) provide details for 24 benchmark functions.

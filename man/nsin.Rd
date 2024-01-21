@@ -17,8 +17,6 @@ nsin evaluated at nsin
 }
 \description{
 nsin: Block wave
-
-vsin: v wave
 }
 \examples{
 curve(nsin(2*pi*x), n = 1000)

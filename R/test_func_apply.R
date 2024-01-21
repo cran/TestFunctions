@@ -41,6 +41,50 @@ test_func_apply <- function(func, x, scale_it, scale_low, scale_high, noise=0, .
   func(x, ...) + noise.out
 }
 
+#' General function for evaluating a test function with multivariate output
+#'
+#' @param func A function to evaluate
+#' @param x Input value, either a matrix whose rows are points or
+#' a vector for a single point. Be careful with 1-D functions.
+#' @param numoutdim Number of output dimensions
+#' @param scale_it Should the data be scaled from [0, 1]^D to
+#' [scale_low, scale_high]? This means the input data is confined
+#' to be in [0, 1]^D, but the function isn't.
+#' @param scale_low Lower bound for each variable
+#' @param scale_high Upper bound for each variable
+#' @param noise If white noise should be added, specify the
+#' standard deviation for normal noise
+#' @param ... Additional parameters for func
+#'
+#' @return Function values at x
+#' @importFrom stats rnorm rexp runif
+#' @export
+#'
+#' @examples
+#' x <- matrix(seq(0,1,length.out=10), ncol=1)
+#' y <- test_func_apply(sin, x, TRUE, 0, 2*pi, .05)
+#' plot(x,y)
+#' curve(sin(2*pi*x), col=2, add=TRUE)
+test_func_applyMO <- function(func, x, numoutdim, scale_it, scale_low, scale_high, noise=0, ...) {#browser()
+  if (noise < 0 | !is.numeric(noise)) noise <- 0
+  if (is.matrix(x)) {
+    noise.out <- matrix(rnorm(nrow(x)*numoutdim, 0, noise), nrow(x), numoutdim)
+    #apply(x, 1, test_func_apply, func=func, scale_it=scale_it, scale_low=scale_low, scale_high=scale_high, ...)
+    if (scale_it) {
+      return(t(apply(x, 1, function(y, ...){func(y * (scale_high - scale_low) + scale_low, ...)}, ...)) + noise.out)
+    } else {
+      return(t(apply(x, 1, func, ...)) + noise.out)
+    }
+  }
+  # otherwise is single value
+  noise.out <- rnorm(numoutdim, 0, noise)
+  if (scale_it) {
+    #return(func((x - scale_low) / (scale_high - scale_low)))
+    return(func(x * (scale_high - scale_low) + scale_low, ...) + noise.out)
+  }
+  func(x, ...) + noise.out
+}
+
 #' Create a standard test function.
 #'
 #' This makes it easier to create

@@ -1,19 +1,32 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-TestFunctions
-=============
 
-[![Travis-CI Build Status](https://travis-ci.org/CollinErickson/TestFunctions.svg?branch=master)](https://travis-ci.org/CollinErickson/TestFunctions)
+# TestFunctions
 
-Why should I use it?
---------------------
+<!-- badges: start -->
 
-This R package provides functions for various surfaces that can be used for testing of models, algorithms, etc. For example, if you want to compare how well a neural network does compared to a random forest, you can take data from one of these test functions to train and test them.
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/TestFunctions)](https://cran.r-project.org/package=TestFunctions)
+[![codecov](https://codecov.io/github/CollinErickson/TestFunctions/graph/badge.svg?token=FMnP9TEFBk)](https://app.codecov.io/github/CollinErickson/TestFunctions)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/last-month/TestFunctions?color=blue)](https://r-pkg.org/pkg/TestFunctions)
+[![R-CMD-check](https://github.com/CollinErickson/TestFunctions/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CollinErickson/TestFunctions/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
-How do I use it?
-----------------
+## Why should I use it?
 
-Each of the test functions is called like any other function. The first argument, `x`, should be a vector representing one point or a matrix that has points in its rows. This can cause problems if you are using a 1-dimensional function and pass in a vector of values. Instead you should pass them in as a matrix with a single column, or vectorize the function.
+This R package provides functions for various surfaces that can be used
+for testing of models, algorithms, etc. For example, if you want to
+compare how well a neural network does compared to a random forest, you
+can take data from one of these test functions to train and test them.
+
+## How do I use it?
+
+Each of the test functions is called like any other function. The first
+argument, `x`, should be a vector representing one point or a matrix
+that has points in its rows. This can cause problems if you are using a
+1-dimensional function and pass in a vector of values. Instead you
+should pass them in as a matrix with a single column, or vectorize the
+function.
 
 ``` r
 set.seed(0)
@@ -29,10 +42,9 @@ branin(matrix(runif(20), ncol=2))
 ContourFunctions::cf(banana)
 ```
 
-![](tools/README-bananacont-1.png)
+![](tools/README-bananacont-1.png)<!-- -->
 
-How do I get it?
-----------------
+## How do I get it?
 
 Install it like any other package with `install.packages`.
 
