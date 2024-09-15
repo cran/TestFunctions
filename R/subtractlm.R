@@ -21,7 +21,8 @@
 #'   ContourFunctions::cf(subtractlm(f, 2), batchmax=Inf)
 #' }
 subtractlm <- function(func, d, n=d*100) {
-  x1 <- lhs::randomLHS(n, d)
+  # x1 <- lhs::randomLHS(n, d)
+  x1 <- random_LHS(n, d)
   y <- apply(x1, 1, func)
   df <- data.frame(x=x1, y=y)
   mod_lm <- lm(y ~ ., df)

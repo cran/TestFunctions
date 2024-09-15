@@ -1,8 +1,15 @@
+# TestFunctions 0.2.2
+
+Fixed Suggests issue to stay on CRAN. Packages were moved to Depends,
+removed, or changed to only be used within requireNamespace.
+
 # TestFunctions 0.2.1
 
 Various changes made over the years.
 
 Error in the borehole function fixed.
+
+Accepted to CRAN on 1/21/24.
 
 # TestFunctions 0.2.0
 

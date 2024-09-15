@@ -8,6 +8,8 @@
 #'
 #' @return Function with added linear terms
 #' @export
+#' @importFrom ContourFunctions cf
+#' @importFrom rmarkdown html_vignette
 #'
 #' @examples
 #' banana(c(.5,.85))

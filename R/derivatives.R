@@ -5,6 +5,7 @@
 #'
 #' @return A gradient function
 #' @export
+#' @importFrom numDeriv grad
 #'
 #' @examples
 #' numGrad(sin)

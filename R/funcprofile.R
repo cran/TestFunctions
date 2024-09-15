@@ -8,7 +8,7 @@
 #' @param bins Number of bins in histogram.
 #'
 #' @importFrom stats sd predict lm
-#' @importFrom graphics plot abline
+#' @importFrom graphics plot abline hist
 #' @return Nothing, prints and plots
 #' @export
 #'
@@ -20,11 +20,13 @@ funcprofile <- function(func, d, n=1000*d, bins=30) {
   # func <- TestFunctions::borehole
   # d <- 8
   # n <- 1000*d
-  x <- lhs::randomLHS(n, d)
+  # x <- lhs::randomLHS(n, d)
+  x <- random_LHS(n, d)
   y <- apply(x, 1, func)
   df <- data.frame(x=x, y=y)
   n2 <- n #max(n, 1000*d)
-  x2 <- lhs::randomLHS(n, d)
+  # x2 <- lhs::randomLHS(n, d)
+  x2 <- random_LHS(n, d)
   y2 <- apply(x2, 1, func)
   df2 <- data.frame(x=x2, y=y2)
 
@@ -36,9 +38,13 @@ funcprofile <- function(func, d, n=1000*d, bins=30) {
   cat("Summary of y:\n")
   print(c(summary(y), sd=std))
   cat("Showing histogram of y")
-  print(ggplot2::ggplot(data.frame(y=y), ggplot2::aes_string(y)) +
-          ggplot2::geom_histogram(bins=bins) +
-          ggplot2::ggtitle("Histogram of y"))
+  if (requireNamespace("ggplot2", quietly = TRUE)) {
+    print(ggplot2::ggplot(data.frame(y=y), ggplot2::aes_string(y)) +
+            ggplot2::geom_histogram(bins=bins) +
+            ggplot2::ggtitle("Histogram of y"))
+  } else {
+    hist(y, main="Histogram of y", breaks=bins)
+  }
   mod_lm <- lm(y ~ ., df)
   cat("Summary of linear model is:\n")
   print(summary(mod_lm))
@@ -69,9 +75,13 @@ funcprofile <- function(func, d, n=1000*d, bins=30) {
   if (TRUE) {
     g <- apply(x, 1, function(xi) {numDeriv::grad(func, xi)})
     g2 <- colMeans(g^2)
-    print(ggplot2::ggplot(data.frame(g2=g2), ggplot2::aes_string(g2)) +
-            ggplot2::geom_histogram(bins=bins) +
-            ggplot2::ggtitle("Histogram of grad norm 2"))
+    if (requireNamespace("ggplot2", quietly = TRUE)) {
+      print(ggplot2::ggplot(data.frame(g2=g2), ggplot2::aes_string(g2)) +
+              ggplot2::geom_histogram(bins=bins) +
+              ggplot2::ggtitle("Histogram of grad norm 2"))
+    } else {
+      hist(g2, main="Histogram of grad norm 2", breaks=bins)
+    }
 
   }
 }
